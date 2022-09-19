@@ -3,8 +3,15 @@
 
 ;; Crude storage API
 
-(def local-storage js/localStorage)
-(def session-storage js/sessionStorage)
+(def local-storage
+  (try js/localStorage
+       js/localStorage
+       (catch js/Object _e nil)))
+
+(def session-storage
+  (try js/sessionStorage
+       js/sessionStorage
+       (catch js/Object _e nil)))
 
 (defn contains-key?
   [^js/Storage storage ^string key]
