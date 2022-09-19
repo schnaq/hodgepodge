@@ -21,11 +21,11 @@
 
 (defn get-item
   ([^js/Storage storage ^string key]
-     (get-item storage key nil))
+   (get-item storage key nil))
   ([^js/Storage storage ^string key ^string default]
-     (if (contains-key? storage key)
-       (.getItem storage key)
-       default)))
+   (if (contains-key? storage key)
+     (.getItem storage key)
+     default)))
 
 (defn set-item
   [^js/Storage storage ^string key ^string val]
@@ -85,9 +85,9 @@
   ILookup
   (-lookup
     ([^js/Storage s key]
-       (-lookup s key nil))
+     (-lookup s key nil))
     ([^js/Storage s key not-found]
-       (let [sk (serialize key)]
-         (if (contains-key? s sk)
-           (deserialize (get-item s sk))
-           not-found)))))
+     (let [sk (serialize key)]
+       (if (contains-key? s sk)
+         (deserialize (get-item s sk))
+         not-found)))))
